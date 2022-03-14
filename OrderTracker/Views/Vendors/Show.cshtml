@@ -1,0 +1,24 @@
+@{
+  Layout = "_Layout";
+}
+
+@using OrderTracker.Models;
+
+<h3>Vendor: @Model["vendor"].Name</h3>
+<h5>@Model["vendor"].Description</h5>
+
+<h5><a href='/vendors/@Model["vendor"].Id/orders/new'>Add a new order for @Model["vendor"].Name</a></h5>
+
+<ul>
+
+@if (@Model["orders"].Count == 0)
+{
+  <h3>There are currently no orders.</h3>
+}
+
+@foreach (Order order in @Model["orders"])
+{
+  <hr><h4>• <a href='/vendors/@Model["vendor"].Id/orders/@order.Id'>@order.Title</a></h4>
+}
+</ul>
+<p><a href='/vendors'>Back to all vendors</a></p>
